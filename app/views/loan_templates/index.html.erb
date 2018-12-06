@@ -1,0 +1,138 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All loans
+    </h1>
+
+    <a href="/loans/new" class="btn btn-block btn-outline-secondary">
+      Add a new loan
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+
+        <th>
+          Current balance
+        </th>
+
+        <th>
+          Original amount
+        </th>
+
+        <th>
+          Interest rate
+        </th>
+
+        <th>
+          Loan name
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @loans.each do |loan| %>
+      <tr>
+
+        <td>
+          <%= number_to_currency(loan.current_balance) %>
+        </td>
+
+        <td>
+          <%= number_to_currency(loan.original_amount) %>
+        </td>
+
+        <td>
+          <%= number_to_percentage(loan.interest_rate) %>
+        </td>
+
+        <td>
+          <%= loan.loan_name %>
+        </td>
+
+        <td>
+          <a href="/loans/<%= loan.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+
+        
+<!--<div>-->
+<!--  < % @loans.each_with_index do |loan , index| %>-->
+<!--    < %= column_chart [ -->
+<!--        {name: loan.loan_name , data: @pmt_schedule_chart[index]} ,-->
+<!--        {name: loan.loan_name , data: @adj_pmt_schedule_chart[index]} ,-->
+<!--    ] %>-->
+<!--  < % end %>-->
+<!--</div>-->
+<!--<div>-->
+<!--  < %= column_chart @data.map { |data|-->
+<!--    {name: data.fetch(:name) , data: data.fetch(:data)} -->
+<!--  } , stacked: true , prefix: "$" , thousands: "," %>-->
+<!--</div>-->
+<!--<div>-->
+<!--  < %= column_chart @data_adj.map { |data|-->
+<!--    {name: data.fetch(:name) , data: data.fetch(:data)} -->
+<!--  } , stacked: true , prefix: "$" , thousands: "," %>-->
+<!--</div>-->
+
+<div>
+  <%= column_chart [{name: "Total Balance" , data: @total_pmt_schedule_chart} , {name: "Total Balance with Adjustments" , data: @total_adj_pmt_schedule_chart}], prefix: "$" , thousands: "," %>
+</div>
+<!--<div>-->
+<!--  < %= line_chart [{name: "Balance", data: @pmt_schedule_chart} , {name: "Adj Balance", data: @adj_pmt_schedule_chart}] %>-->
+<!--</div>-->
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+
+        <th>
+          Total Interest with Minimum Payments
+        </th>
+
+        <th>
+          Time Until Payoff
+        </th>
+        <th>
+          Total Interest with Adjusted Payments
+        </th>
+        </th>
+
+        <th>
+          Total Savings!
+        </th>
+      </tr>
+      <tr>
+
+        <td>
+          <%= number_to_currency(@total_interest) %>
+        </td>
+        <td>
+          <%= @pmt_schedule_chart.length %>
+        </td>
+        <td>
+          <%= number_to_currency(@total_adj_interest) %>
+        </td>
+
+        <td>
+          <%= number_to_currency(@total_interest - @total_adj_interest ) %>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>        

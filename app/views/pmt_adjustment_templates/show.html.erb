@@ -1,0 +1,86 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Payment adjustment: <%= @pmt_adjustment.adjustment_details %>
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/pmt_adjustments" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/pmt_adjustments/<%= @pmt_adjustment.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit Payment Adjustment
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_pmt_adjustment/<%= @pmt_adjustment.id %>" class="btn btn-block btn-outline-secondary">
+          Delete Payment Adjustment
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Payment occurence
+      </dt>
+      <dd>
+        <%= @pmt_adjustment.payment_occurence %>
+      </dd>
+
+      <dt>
+        Loan
+      </dt>
+      <dd>
+        <%= @pmt_adjustment.loan.loan_name %>
+      </dd>
+
+      <dt>
+        Payment adjustment
+      </dt>
+      <dd>
+        <%= number_to_currency(@pmt_adjustment.pmt_adjustment) %>
+      </dd>
+
+      <dt>
+        Beg pay adj
+      </dt>
+      <dd>
+        <%= @pmt_adjustment.beg_pay_adj %>
+      </dd>
+
+      <dt>
+        End pay adj
+      </dt>
+      <dd>
+        <%= @pmt_adjustment.end_pay_adj %>
+      </dd>
+
+      <dt>
+        Adjustment details
+      </dt>
+      <dd>
+        <%= @pmt_adjustment.adjustment_details %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@pmt_adjustment.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@pmt_adjustment.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

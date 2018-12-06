@@ -1,0 +1,91 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All Payment Adjustments
+    </h1>
+
+    <a href="/pmt_adjustments/new" class="btn btn-block btn-outline-secondary">
+      Add a new payment adjustment
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Payment occurence
+        </th>
+
+        <th>
+          Loan
+        </th>
+
+        <th>
+          Pmt adjustment
+        </th>
+
+        <th>
+          Beg pay adj
+        </th>
+
+        <th>
+          End pay adj
+        </th>
+
+        <th>
+          Adjustment details
+        </th>
+        
+        <th>
+        </th>
+      </tr>
+
+      <% @pmt_adjustments.each do |pmt_adjustment| %>
+      <tr>
+        <td>
+          <%= pmt_adjustment.id %>
+        </td>
+
+        <td>
+          <%= pmt_adjustment.payment_occurence %>
+        </td>
+
+        <td>
+          <%= pmt_adjustment.loan.loan_name %>
+        </td>
+
+        <td>
+          <%= number_to_currency(pmt_adjustment.pmt_adjustment) %>
+        </td>
+
+        <td>
+          <%= pmt_adjustment.beg_pay_adj %>
+        </td>
+
+        <td>
+          <%= pmt_adjustment.end_pay_adj %>
+        </td>
+
+        <td>
+          <%= pmt_adjustment.adjustment_details %>
+        </td>
+
+        <td>
+          <a href="/pmt_adjustments/<%= pmt_adjustment.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
