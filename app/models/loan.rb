@@ -20,7 +20,7 @@ class Loan < ApplicationRecord
     
     validates :interest_rate, :numericality => { :greater_than => 0 }
     validates :interest_rate, :presence => true
-    validates :current_balance, :numericality => { :greater_than => 0 }
+    validates :current_balance, :numericality => { :greater_than_or_equal_to => 0 }
     validates :current_balance, :presence => true
     validates :original_amount, :numericality => { :greater_than => 0 }
     validates :monthly_min_payment, :presence => true
