@@ -22,6 +22,11 @@ class Loan < ApplicationRecord
     validates :interest_rate, :presence => true
     validates :current_balance, :numericality => { :greater_than => 0 }
     validates :current_balance, :presence => true
+    validates :original_amount, :numericality => { :greater_than => 0 }
+    validates :monthly_min_payment, :presence => true
+    validates :monthly_min_payment, :numericality => { :greater_than => 0 }
+    validates :periods_in_year, :presence => true
+    validates :periods_in_year, :numericality => { :greater_than => 0 }
     
     def pay_schedule
         i=0;

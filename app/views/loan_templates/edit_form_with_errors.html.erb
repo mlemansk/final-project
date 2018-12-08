@@ -39,19 +39,19 @@
   </div>
 
   <div class="form-group">
+    <label for="monthly_min_payment">
+      Monthly Minimum
+    </label>
+
+    <input type="text" id="monthly_min_payment" name="monthly_min_payment" class="form-control" value="<%= @loan.monthly_min_payment %>">
+  </div>
+
+  <div class="form-group">
     <label for="periods_in_year">
       Periods in year
     </label>
 
     <input type="text" id="periods_in_year" name="periods_in_year" class="form-control" value="<%= @loan.periods_in_year %>">
-  </div>
-
-  <div class="form-group">
-    <label for="user_id">
-      User
-    </label>
-
-    <input type="text" id="user_id" name="user_id" class="form-control" value="<%= @loan.user_id %>">
   </div>
 
   <div class="form-group">

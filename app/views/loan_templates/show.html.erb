@@ -120,6 +120,10 @@
         </th>
 
         <th>
+          Adj End Balance
+        </th>
+
+        <th>
           Adj Cumulative Interest
         </th>
       </tr>
@@ -156,6 +160,14 @@
         </td>
         <td>
           <%= number_to_currency(schedule["cum_int"]) %>
+        </td>
+
+        <td>
+          <% if @pmt_schedule_adj[schedule["pmt_no"] - 1].blank? %>
+            <%= number_to_currency(@pmt_schedule_adj[@pmt_schedule_adj.length-1]["end_balance_adj"]) %>
+          <% else %>
+            <%= number_to_currency(@pmt_schedule_adj[schedule["pmt_no"] - 1]["end_balance_adj"]) %>
+          <% end %>
         </td>
 
         <td>

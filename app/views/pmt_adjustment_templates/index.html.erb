@@ -17,9 +17,6 @@
   <div class="col-md-12">
     <table class="table">
       <tr>
-        <th>
-          ID
-        </th>
 
         <th>
           Payment occurence
@@ -46,14 +43,14 @@
         </th>
         
         <th>
+        </th>   
+        
+        <th>
         </th>
       </tr>
 
       <% @pmt_adjustments.each do |pmt_adjustment| %>
       <tr>
-        <td>
-          <%= pmt_adjustment.id %>
-        </td>
 
         <td>
           <%= pmt_adjustment.payment_occurence %>
@@ -72,7 +69,11 @@
         </td>
 
         <td>
-          <%= pmt_adjustment.end_pay_adj %>
+          <% if pmt_adjustment.payment_occurence == "Between" %>
+            <%= pmt_adjustment.end_pay_adj %>
+          <% else %>
+             N/A 
+          <% end %>
         </td>
 
         <td>
@@ -80,10 +81,17 @@
         </td>
 
         <td>
-          <a href="/pmt_adjustments/<%= pmt_adjustment.id %>">
-            Show details
+          <a href="/pmt_adjustments/<%= pmt_adjustment.id %>/edit">
+            Edit details
           </a>
         </td>
+        
+        <td>
+          <a href="/delete_pmt_adjustment/<%= pmt_adjustment.id %>">
+            Delete adjustment
+          </a>
+        </td>
+      
       </tr>
       <% end %>
     </table>

@@ -9,9 +9,15 @@
   <div class="form-group">
     <label for="payment_occurence">Payment occurence</label>
     <select class="form-control" id="payment_occurence" name="payment_occurence" value=<%= @pmt_adjustment.payment_occurence %> >
-      <option>Recurring</option>
-      <option>One Time</option>
-      <option>Between</option>
+      <option <% if @pmt_adjustment.payment_occurence == "Recurring" %> selected <% end%> >
+        Recurring
+      </option>
+      <option <% if @pmt_adjustment.payment_occurence == "One Time" %> selected <% end%> >
+        One Time
+      </option>
+      <option <% if @pmt_adjustment.payment_occurence == "Between" %> selected <% end%> >
+        Between
+      </option>
     </select>
   </div>
 
@@ -68,7 +74,7 @@
   </div>
 
   <button class="btn btn-block btn-outline-secondary">
-    Update pmt adjustment
+    Update payment adjustment
   </button>
 </form>
 

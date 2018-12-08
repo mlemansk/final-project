@@ -31,7 +31,7 @@ class PmtAdjustmentsController < ApplicationController
     if @pmt_adjustment.valid?
       @pmt_adjustment.save
 
-      redirect_back(:fallback_location => "/pmt_adjustments", :notice => "Pmt adjustment created successfully.")
+      redirect_to("/pmt_adjustments", :notice => "Payment adjustment created successfully.")
     else
       render("pmt_adjustment_templates/new_form_with_errors.html.erb")
     end
@@ -57,7 +57,7 @@ class PmtAdjustmentsController < ApplicationController
     if @pmt_adjustment.valid?
       @pmt_adjustment.save
 
-      redirect_to("/pmt_adjustments/#{@pmt_adjustment.id}", :notice => "Pmt adjustment updated successfully.")
+      redirect_to("/pmt_adjustments", :notice => "Payment adjustment updated successfully.")
     else
       render("pmt_adjustment_templates/edit_form_with_errors.html.erb")
     end
@@ -68,6 +68,6 @@ class PmtAdjustmentsController < ApplicationController
 
     @pmt_adjustment.destroy
 
-    redirect_to("/pmt_adjustments", :notice => "Pmt adjustment deleted successfully.")
+    redirect_to("/pmt_adjustments", :notice => "Payment adjustment deleted successfully.")
   end
 end
