@@ -170,7 +170,7 @@
         </td>
 
         <td>
-          <% if @pay_off_period_adj == nil || @pay_off_period %>
+          <% if @pay_off_period_adj == nil || @pay_off_period == nil%>
           
           <% else %>
           <%= @pay_off_period.max - @pay_off_period_adj.max %> Months
