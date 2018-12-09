@@ -1,13 +1,13 @@
 <% if @loan.errors.any? %>
   <% @loan.errors.full_messages.each do |message| %>
-    <div class="alert">
+    <div class="alert alert-danger">
       <%= message %>
     </div>
   <% end %>
 <% end %>
 
 <h1>
-  Edit loan #<%= @loan.id %>
+  Edit <%= @loan.loan_name %>
 </h1>
 
 <hr>

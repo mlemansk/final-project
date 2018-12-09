@@ -10,7 +10,7 @@
 <% end %>
 
 <h1>
-  Add a new pmt adjustment
+  Add a new payment adjustment
 </h1>
 
 
@@ -19,32 +19,43 @@
 <form action="/create_pmt_adjustment" method="post">
 
   <div class="form-group">
-    <label for="payment_occurence">
-      Payment occurence
-    </label>
-
-    <input type="text" id="payment_occurence" name="payment_occurence" class="form-control" value="<%= @pmt_adjustment.payment_occurence %>">
+    <label for="payment_occurence">Payment occurence</label>
+    <select class="form-control" id="payment_occurence" name="payment_occurence" value=<%= @pmt_adjustment.payment_occurence %> >
+      <option <% if @pmt_adjustment.payment_occurence == "Recurring" %> selected <% end%> >
+        Recurring
+      </option>
+      <option <% if @pmt_adjustment.payment_occurence == "One Time" %> selected <% end%> >
+        One Time
+      </option>
+      <option <% if @pmt_adjustment.payment_occurence == "Between" %> selected <% end%> >
+        Between
+      </option>
+    </select>
   </div>
-
+  
   <div class="form-group">
     <label for="loan_id">
-      Loan
+      What loan does this apply to?
     </label>
 
-    <input type="text" id="loan_id" name="loan_id" class="form-control" value="<%= @pmt_adjustment.loan_id %>">
+    <select class="form-control" id="loan_id" name="loan_id" value=<%= @pmt_adjustment.loan_id %>>
+      <% current_user.loans.each do |loan| %>
+        <% if loan.id == @pmt_adjustment.loan_id %>
+          <option value="<%= loan.id %>" selected><%=loan.loan_name %></option>
+        <% else %>
+          <option value="<%= loan.id %>"><%=loan.loan_name %></option>
+        <% end %>
+      <% end %>
+    </select>
   </div>
-
-  <div class="form-group">
-    <label for="user_id">
-      User
-    </label>
-
-    <input type="text" id="user_id" name="user_id" class="form-control" value="<%= @pmt_adjustment.user_id %>">
-  </div>
+  
+  <!--Captures Current User ID for Loan-->
+  
+  <input type="hidden" id="user_id" name="user_id" class="form-control" value="<%=current_user.id %>">
 
   <div class="form-group">
     <label for="pmt_adjustment">
-      Pmt adjustment
+      Payment Adjustment
     </label>
 
     <input type="text" id="pmt_adjustment" name="pmt_adjustment" class="form-control" value="<%= @pmt_adjustment.pmt_adjustment %>">
@@ -52,7 +63,7 @@
 
   <div class="form-group">
     <label for="beg_pay_adj">
-      Beg pay adj
+      Beginning Period for Pay Adjustment
     </label>
 
     <input type="text" id="beg_pay_adj" name="beg_pay_adj" class="form-control" value="<%= @pmt_adjustment.beg_pay_adj %>">
@@ -60,7 +71,7 @@
 
   <div class="form-group">
     <label for="end_pay_adj">
-      End pay adj
+       Ending Period for Pay Adjustment
     </label>
 
     <input type="text" id="end_pay_adj" name="end_pay_adj" class="form-control" value="<%= @pmt_adjustment.end_pay_adj %>">
@@ -75,7 +86,7 @@
   </div>
 
   <button class="btn btn-block btn-outline-secondary">
-    Create pmt adjustment
+    Create payment adjustment
   </button>
 </form>
 

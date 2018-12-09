@@ -1,13 +1,13 @@
 <% if @pmt_adjustment.errors.any? %>
   <% @pmt_adjustment.errors.full_messages.each do |message| %>
-    <div class="alert">
+    <div class="alert alert-danger">
       <%= message %>
     </div>
   <% end %>
 <% end %>
 
 <h1>
-  Edit pmt adjustment #<%= @pmt_adjustment.id %>
+  Edit payment adjustments
 </h1>
 
 <hr>
