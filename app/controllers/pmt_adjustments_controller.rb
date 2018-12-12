@@ -21,7 +21,15 @@ class PmtAdjustmentsController < ApplicationController
     @pmt_adjustment = PmtAdjustment.new
 
     @pmt_adjustment.payment_occurence = params.fetch("payment_occurence")
-    @pmt_adjustment.loan_id = params.fetch("loan_id")
+    
+    # Forces a database error if no loans exist for a user, prompting them to create a loan
+    if params.has_key?("loan_id")
+      @pmt_adjustment.loan_id = params.fetch("loan_id")
+    else
+      @pmt_adjustment.loan_id = []
+    end
+    
+    
     @pmt_adjustment.user_id = params.fetch("user_id")
     @pmt_adjustment.pmt_adjustment = params.fetch("pmt_adjustment")
     @pmt_adjustment.beg_pay_adj = params.fetch("beg_pay_adj")
@@ -47,7 +55,14 @@ class PmtAdjustmentsController < ApplicationController
     @pmt_adjustment = PmtAdjustment.find(params.fetch("id_to_modify"))
 
     @pmt_adjustment.payment_occurence = params.fetch("payment_occurence")
-    @pmt_adjustment.loan_id = params.fetch("loan_id")
+
+    # Forces a database error if no loans exist for a user, prompting them to create a loan
+    if params.has_key?("loan_id")
+      @pmt_adjustment.loan_id = params.fetch("loan_id")
+    else
+      @pmt_adjustment.loan_id = []
+    end
+  
     @pmt_adjustment.user_id = params.fetch("user_id")
     @pmt_adjustment.pmt_adjustment = params.fetch("pmt_adjustment")
     @pmt_adjustment.beg_pay_adj = params.fetch("beg_pay_adj")

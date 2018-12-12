@@ -18,6 +18,7 @@ class PmtAdjustment < ApplicationRecord
     belongs_to :loan
     belongs_to :user
     
+    validates :loan_id, :presence => true
     validates :pmt_adjustment, :numericality => { :greater_than => 0 }
     validates :pmt_adjustment, :presence => true
     validates :beg_pay_adj, :numericality => { :greater_than => 0 }
